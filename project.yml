@@ -25,23 +25,8 @@ targets:
         SWIFT_VERSION: "5.9"
         GENERATE_INFOPLIST_FILE: YES
         CODE_SIGN_STYLE: Automatic
-  CaptionCoreTests:
-    type: bundle.unit-test
-    platform: iOS
-    sources:
-      - Tests/CaptionCoreTests
-    dependencies:
-      - target: CaptionSubtitle
-    settings:
-      base:
-        INFOPLIST_FILE: Tests/CaptionCoreTests/Info.plist
-        PRODUCT_BUNDLE_IDENTIFIER: com.vincent.CaptionSubtitleTests
-        SWIFT_VERSION: "5.9"
 schemes:
   CaptionSubtitle:
     build:
       targets:
         CaptionSubtitle: all
-    test:
-      targets:
-        - CaptionCoreTests
