@@ -1,0 +1,46 @@
+name: CaptionSubtitle
+options:
+  bundleIdPrefix: com.vincent
+  deploymentTarget:
+    iOS: "17.4"
+  createIntermediateGroups: true
+targets:
+  CaptionSubtitle:
+    type: application
+    platform: iOS
+    sources:
+      - Sources/CaptionApp
+      - Sources/CaptionCore
+      - Sources/CaptionUI
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.vincent.CaptionSubtitle
+        PRODUCT_NAME: CaptionSubtitle
+        INFOPLIST_KEY_CFBundleDisplayName: 会议字幕
+        INFOPLIST_KEY_NSMicrophoneUsageDescription: 用于聆听会议声音并生成中文字幕。
+        INFOPLIST_KEY_NSSpeechRecognitionUsageDescription: 用于实时识别英文语音并翻译成中文。
+        INFOPLIST_KEY_UISupportedInterfaceOrientations: "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight"
+        INFOPLIST_KEY_UISupportedInterfaceOrientations~ipad: "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight"
+        TARGETED_DEVICE_FAMILY: "2"
+        SWIFT_VERSION: "5.9"
+        GENERATE_INFOPLIST_FILE: YES
+        CODE_SIGN_STYLE: Automatic
+  CaptionCoreTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - Tests/CaptionCoreTests
+    dependencies:
+      - target: CaptionSubtitle
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: YES
+        SWIFT_VERSION: "5.9"
+schemes:
+  CaptionSubtitle:
+    build:
+      targets:
+        CaptionSubtitle: all
+    test:
+      targets:
+        - CaptionCoreTests
