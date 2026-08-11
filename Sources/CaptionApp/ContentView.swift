@@ -1,7 +1,10 @@
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject private var settings = SettingsStore()
+    @StateObject private var session = CaptionSession()
+
     var body: some View {
-        Text("会议字幕")
+        CaptionView(session: session, settings: settings)
     }
 }
