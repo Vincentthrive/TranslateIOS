@@ -38,7 +38,15 @@ jobs:
       - name: Install XcodeGen
         run: |
           curl -sSL -o xcodegen.zip https://github.com/yonaskolb/XcodeGen/releases/latest/download/xcodegen.zip
+          echo "=== zip contents ==="
+          unzip -l xcodegen.zip
           unzip -o xcodegen.zip
+          ls -la
+          # find the binary - it may be in a subdirectory
+          BIN=$(find . -name "xcodegen" -type f -not -path "./.git/*" | head -1)
+          echo "Found binary at: $BIN"
+          chmod +x "$BIN"
+          mv "$BIN" ./xcodegen
           chmod +x xcodegen
           echo "$PWD" >> $GITHUB_PATH
           ./xcodegen --version
