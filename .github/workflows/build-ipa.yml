@@ -38,12 +38,13 @@ jobs:
       - name: Install XcodeGen
         run: |
           curl -sSL -o xcodegen.zip https://github.com/yonaskolb/XcodeGen/releases/latest/download/xcodegen.zip
-          sudo unzip -o xcodegen.zip -d /usr/local/bin
-          sudo chmod +x /usr/local/bin/xcodegen
-          xcodegen --version
+          unzip -o xcodegen.zip
+          chmod +x xcodegen
+          echo "$PWD" >> $GITHUB_PATH
+          ./xcodegen --version
 
       - name: Generate project
-        run: xcodegen generate
+        run: ./xcodegen generate
 
       - name: Run tests
         run: |
