@@ -8,8 +8,6 @@ on:
 jobs:
   test-and-build:
     runs-on: macos-15
-    env:
-      HOMEBREW_NO_REQUIRE_TAP_TRUST: "1"
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -39,8 +37,10 @@ jobs:
 
       - name: Install XcodeGen
         run: |
-          brew untap aws/tap 2>/dev/null || true
-          brew install xcodegen
+          curl -sSL -o xcodegen.zip https://github.com/yonaskolb/XcodeGen/releases/latest/download/xcodegen.zip
+          sudo unzip -o xcodegen.zip -d /usr/local/bin
+          sudo chmod +x /usr/local/bin/xcodegen
+          xcodegen --version
 
       - name: Generate project
         run: xcodegen generate
