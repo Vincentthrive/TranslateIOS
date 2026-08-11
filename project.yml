@@ -34,10 +34,9 @@ targets:
       - target: CaptionSubtitle
     settings:
       base:
-        GENERATE_INFOPLIST_FILE: YES
-        INFOPLIST_KEY_CFBundleIdentifier: com.vincent.CaptionSubtitleTests
+        INFOPLIST_FILE: Tests/CaptionCoreTests/Info.plist
+        PRODUCT_BUNDLE_IDENTIFIER: com.vincent.CaptionSubtitleTests
         SWIFT_VERSION: "5.9"
-        ENABLE_USER_SCRIPT_SANDBOXING: NO
 schemes:
   CaptionSubtitle:
     build:
