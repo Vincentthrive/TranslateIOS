@@ -23,11 +23,12 @@ final class OnDeviceTranslationService: Translating {
     private var session: TranslationSession?
 
     func translate(_ text: String) async throws -> String {
-        guard TranslationSession.isAvailable else {
+        guard await TranslationSession.isAvailable else {
             throw TranslationError.unavailable
         }
         if session == nil {
-            session = TranslationSession(sourceLanguage: source, targetLanguage: target)
+            let config = TranslationSession.Configuration(sourceLanguage: source, targetLanguage: target)
+            session = try await TranslationSession(configuration: config)
         }
         guard let session else {
             throw TranslationError.unavailable
