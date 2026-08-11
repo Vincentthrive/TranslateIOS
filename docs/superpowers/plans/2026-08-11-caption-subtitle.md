@@ -71,7 +71,7 @@ targets:
         INFOPLIST_KEY_NSMicrophoneUsageDescription: 用于聆听会议声音并生成中文字幕。
         INFOPLIST_KEY_NSSpeechRecognitionUsageDescription: 用于实时识别英文语音并翻译成中文。
         INFOPLIST_KEY_UISupportedInterfaceOrientations: "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight"
-        INFOPLIST_KEY_UISupportedInterfaceOrientations~ipad: "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight"
+        INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad: "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight"
         TARGETED_DEVICE_FAMILY: "2"
         SWIFT_VERSION: "5.9"
         GENERATE_INFOPLIST_FILE: YES
