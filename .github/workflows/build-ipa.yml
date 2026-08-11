@@ -8,12 +8,14 @@ on:
 jobs:
   test-and-build:
     runs-on: macos-15
+    env:
+      HOMEBREW_NO_REQUIRE_TAP_TRUST: "1"
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
       - name: Install XcodeGen
-        run: HOMEBREW_NO_REQUIRE_TAP_TRUST=1 brew install xcodegen
+        run: brew install xcodegen
 
       - name: Generate project
         run: xcodegen generate
