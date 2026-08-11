@@ -47,7 +47,8 @@ jobs:
           echo "Found binary at: $BIN"
           chmod +x "$BIN"
           mv "$BIN" ./xcodegen
-          chmod +x xcodegen
+          xattr -d com.apple.quarantine ./xcodegen 2>/dev/null || true
+          file ./xcodegen
           echo "$PWD" >> $GITHUB_PATH
           ./xcodegen --version
 
