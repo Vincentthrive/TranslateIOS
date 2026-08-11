@@ -15,25 +15,10 @@ jobs:
       - name: Select Xcode
         run: sudo xcode-select -s /Applications/Xcode.app
 
-      - name: Prewarm iPad Simulator
+      - name: Boot iPad Simulator
         run: |
-          runtime=$(xcrun simctl list runtimes iOS -j | python3 -c "
-          import json,sys
-          for r in json.load(sys.stdin)['runtimes']:
-              if r['isAvailable']:
-                  print(r['identifier'])
-                  break
-          ")
-          devicetype=$(xcrun simctl list devicetypes "iPad " -j | python3 -c "
-          import json,sys
-          types = json.load(sys.stdin)['devicetypes']
-          print(types[-1]['identifier'])
-          ")
-          echo "Runtime: $runtime"
-          echo "DeviceType: $devicetype"
-          xcrun simctl create "CI_iPad" "$devicetype" "$runtime" 2>/dev/null || true
-          xcrun simctl boot "CI_iPad" 2>/dev/null || true
-          echo "SIMULATOR_DEVICE=CI_iPad" >> $GITHUB_ENV
+          xcrun simctl boot "iPad (10th generation)" 2>/dev/null || true
+          echo "SIM_DEVICE=iPad (10th generation)" >> $GITHUB_ENV
 
       - name: Install XcodeGen
         run: |
@@ -55,7 +40,7 @@ jobs:
         run: |
           xcodebuild test -project CaptionSubtitle.xcodeproj \
             -scheme CaptionSubtitle \
-            -destination "platform=iOS Simulator,name=$SIMULATOR_DEVICE" \
+            -destination "platform=iOS Simulator,name=$SIM_DEVICE" \
             CODE_SIGNING_ALLOWED=NO
 
       - name: Build unsigned app
