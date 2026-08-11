@@ -42,18 +42,14 @@ jobs:
           unzip -l xcodegen.zip
           unzip -o xcodegen.zip
           ls -la
-          # find the binary - it may be in a subdirectory
-          BIN=$(find . -name "xcodegen" -type f -not -path "./.git/*" | head -1)
-          echo "Found binary at: $BIN"
-          chmod +x "$BIN"
-          mv "$BIN" ./xcodegen
-          xattr -d com.apple.quarantine ./xcodegen 2>/dev/null || true
-          file ./xcodegen
+          chmod +x xcodegen/bin/xcodegen
+          xattr -d com.apple.quarantine xcodegen/bin/xcodegen 2>/dev/null || true
+          ln -sf xcodegen/bin/xcodegen xg
           echo "$PWD" >> $GITHUB_PATH
-          ./xcodegen --version
+          ./xg --version
 
       - name: Generate project
-        run: ./xcodegen generate
+        run: ./xg generate
 
       - name: Run tests
         run: |
